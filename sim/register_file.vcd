@@ -1,0 +1,135 @@
+$date
+   Wed Jan 29 20:33:28 2025
+$end
+
+$version
+  2024.2.1
+  $dumpfile ("register_file.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module reg_file_tb $end
+$var reg 1 ! clk $end
+$var reg 1 " rst $end
+$var reg 1 # we $end
+$var reg 5 $ rd_addr [4:0] $end
+$var reg 32 % rd [31:0] $end
+$var reg 5 & rs1_addr [4:0] $end
+$var reg 5 ' rs2_addr [4:0] $end
+$var wire 32 ( rs1 [31:0] $end
+$var wire 32 ) rs2 [31:0] $end
+$scope module dut $end
+$var wire 1 * clk_i $end
+$var wire 1 + rst_n_i $end
+$var wire 1 , we_i $end
+$var wire 5 - rd_addr_i [4:0] $end
+$var wire 32 . rd_i [31:0] $end
+$var wire 5 / rs1_addr_i [4:0] $end
+$var wire 5 0 rs2_addr_i [4:0] $end
+$var wire 32 ( rs1_o [31:0] $end
+$var wire 32 ) rs2_o [31:0] $end
+$var integer 32 1 i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+0"
+x#
+bx $
+bx %
+bx &
+bx '
+bx (
+bx )
+0*
+0+
+x,
+bx -
+bx .
+bx /
+bx 0
+b100000 1
+$end
+
+#10000
+1"
+0#
+b0 &
+b0 '
+b0 (
+b0 )
+1+
+0,
+b0 /
+b0 0
+
+#19000
+1!
+1*
+
+#37000
+1#
+b1 $
+b1 %
+b1 &
+b10 '
+1,
+b1 -
+b1 .
+b1 /
+b10 0
+
+#38000
+0!
+0*
+
+#57000
+1!
+b1 (
+1*
+
+#74000
+b11111 $
+b11111111111111111111111111111111 %
+b11111 &
+b0 '
+b0 (
+b11111 -
+b11111111111111111111111111111111 .
+b11111 /
+b0 0
+
+#76000
+0!
+0*
+
+#95000
+1!
+b11111111111111111111111111111111 (
+1*
+
+#111000
+b0 $
+b0 -
+
+#114000
+0!
+0*
+
+#133000
+1!
+1*
+
+#148000
+0#
+0,
+
+#152000
+0!
+0*
