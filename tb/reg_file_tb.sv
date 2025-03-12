@@ -12,15 +12,15 @@ import pkg_config::*;
 
 module reg_file_tb;
 
-    reg clk;
-    reg rst;
-    reg we;
+    logic clk;
+    logic rst;
+    logic we;
 
-    reg [$clog2(NUM_REGISTER)-1:0] rd_addr;
-    reg [DATA_WIDTH-1:0] rd;
+    logic [$clog2(NUM_REGISTER)-1:0] rd_addr;
+    logic [DATA_WIDTH-1:0] rd;
 
-    reg [$clog2(NUM_REGISTER)-1:0] rs1_addr;
-    reg [$clog2(NUM_REGISTER)-1:0] rs2_addr;
+    logic [$clog2(NUM_REGISTER)-1:0] rs1_addr;
+    logic [$clog2(NUM_REGISTER)-1:0] rs2_addr;
 
     wire [DATA_WIDTH-1:0] rs1;
     wire [DATA_WIDTH-1:0] rs2;
@@ -79,7 +79,7 @@ module reg_file_tb;
             $finish;
     end
 
-    always @(posedge clk) begin
+    always_ff @(posedge clk) begin
         $display("clk = %b, rst = %b, we = %b, rd_addr = %5b, rd = %8h, rs1_addr = %5b, rs2_addr = %5b, rs1 = %8h, rs2 = %8h", clk, rst, we, rd_addr, rd, rs1_addr, rs2_addr, rs1, rs2);
     end
 
