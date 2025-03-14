@@ -1,0 +1,48 @@
+$date
+   Fri Mar 14 13:11:43 2025
+$end
+
+$version
+  2024.2.1
+  $dumpfile ("../../../../../../sim/inst_mem.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module inst_mem_tb $end
+$var reg 10 ! addr [9:0] $end
+$var wire 32 " inst [31:0] $end
+$scope module dut $end
+$var wire 10 # addr_i [9:0] $end
+$var reg 32 $ inst_o [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+b0 !
+b100001000000100010011 "
+b0 #
+b100001000000100010011 $
+$end
+
+#20000
+b100 !
+b100001000000110010011 "
+b100 #
+b100001000000110010011 $
+
+#40000
+b1000 !
+b1100010000001000110011 "
+b1000 #
+b1100010000001000110011 $
+
+#60000
+b1100 !
+b11111110001000011000101011100011 "
+b1100 #
+b11111110001000011000101011100011 $

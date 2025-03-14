@@ -1,6 +1,6 @@
 /*
     File name: reg_file.sv
-    Description: This file describes 
+    Description: This file describes the register file.
     Author: Marko Gjorgjievski
     Date: 13.01.2025
 */
@@ -20,10 +20,10 @@ module register_file (
     output wire [DATA_WIDTH-1:0] rs2_o
 );
     // 32 registers, each 32 bits wide
-    reg [DATA_WIDTH-1:0] registers [NUM_REGISTER-1:0];
+    logic [DATA_WIDTH-1:0] registers [NUM_REGISTER-1:0];
     integer i;
 
-    always @(posedge clk_i or negedge rst_n_i) begin
+    always_ff @(posedge clk_i or negedge rst_n_i) begin
         if (!rst_n_i) begin // Active-low reset
             for (i = 0; i < NUM_REGISTER; i = i + 1) begin
                 registers[i] <= 0;  // Use non-blocking assignment for registers
