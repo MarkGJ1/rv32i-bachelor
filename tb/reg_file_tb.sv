@@ -41,6 +41,7 @@ module reg_file_tb;
         clk = 1'b0;
     end
     
+    // Matching Tang Nano 9K crystal frequency.
     always #18.52 clk = ~clk;
 
     initial begin
