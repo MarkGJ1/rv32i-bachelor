@@ -84,7 +84,7 @@ module reg_file_tb;
     end
 
     initial begin
-        $dumpfile("../../../../../../sim/register_file2.vcd");
+        $dumpfile("../../../../../../sim/register_file.vcd");
         $dumpvars;
     end
 
