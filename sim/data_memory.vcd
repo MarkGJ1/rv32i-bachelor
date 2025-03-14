@@ -1,0 +1,91 @@
+$date
+   Fri Mar 14 19:36:57 2025
+$end
+
+$version
+  2024.2.1
+  $dumpfile ("../../../../../../sim/data_memory.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module data_mem_tb $end
+$var reg 1 ! clk $end
+$var reg 1 " we $end
+$var reg 32 # data_i [31:0] $end
+$var reg 10 $ addr [9:0] $end
+$var wire 32 % data_o [31:0] $end
+$scope module dut $end
+$var wire 1 & clk_i $end
+$var wire 1 ' we_i $end
+$var wire 32 ( data_i [31:0] $end
+$var wire 10 ) addr_i [9:0] $end
+$var wire 32 % data_o [31:0] $end
+$var integer 32 * i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+0"
+b0 #
+b0 $
+b0 %
+0&
+0'
+b0 (
+b0 )
+bx *
+$end
+
+#19000
+1!
+1&
+
+#37000
+b100 $
+b1 %
+b100 )
+
+#38000
+0!
+0&
+
+#57000
+1!
+1&
+
+#74000
+b1000 $
+b10 %
+b1000 )
+
+#76000
+0!
+0&
+
+#95000
+1!
+1&
+
+#111000
+1"
+b1 #
+b0 $
+b0 %
+1'
+b1 (
+b0 )
+
+#114000
+0!
+0&
+
+#133000
+1!
+b1 %
+1&
