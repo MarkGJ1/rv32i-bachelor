@@ -79,8 +79,7 @@ module reg_file_tb;
     end
 
     always_ff @(posedge clk) begin
-        $display("clk = %b, rst = %b, we = %b, rd_addr = %5b, rd = %8h, rs1_addr = %5b, rs2_addr = %5b,
-        rs1 = %8h, rs2 = %8h", clk, rst, we, rd_addr, rd, rs1_addr, rs2_addr, rs1, rs2);
+        $display("clk = %b, rst = %b, we = %b, rd_addr = %5b, rd = %8h, rs1_addr = %5b, rs2_addr = %5b, rs1 = %8h, rs2 = %8h", clk, rst, we, rd_addr, rd, rs1_addr, rs2_addr, rs1, rs2);
     end
 
     initial begin
