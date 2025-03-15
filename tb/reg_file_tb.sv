@@ -34,13 +34,11 @@ module reg_file_tb;
         .rs1_addr_i(rs1_addr),
         .rs2_addr_i(rs2_addr),
         .rs1_o(rs1),
-        .rs2_o(rs2)  // Fixed: Was incorrectly named `rd2`
+        .rs2_o(rs2)
     );
 
-    initial begin
-        clk = 1'b0;
-    end
-    
+    // Clock reset.
+    initial clk = 1'b0;
     // Matching Tang Nano 9K crystal frequency.
     always #18.52 clk = ~clk;
 
@@ -52,29 +50,29 @@ module reg_file_tb;
             rs1_addr = 5'b00000;
             rs2_addr = 5'b00000;
         #27.04;
-            assert(dut.rs1_o == 32'h0000_0000) else $fatal("Assertion failed: rs1_o != 0 at time %0t", $time);
-            assert(dut.rs2_o == 32'h0000_0000) else $fatal("Assertion failed: rs2_o != 0 at time %0t", $time);
+            assert(rs1 == 32'h0000_0000) else $fatal("Assertion failed: rs1_o != 0 at time %0t", $time);
+            assert(rs2 == 32'h0000_0000) else $fatal("Assertion failed: rs2_o != 0 at time %0t", $time);
             rs1_addr = 5'b00001;
             rs2_addr = 5'b00010;
             we = 1'b1;
             rd_addr = 5'b00001;
             rd = 32'h0000_0001;
         #37.04;
-            assert(dut.rs1_o == 32'h0000_0001) else $fatal("Assertion failed: rs1_o != 1 at time %0t", $time);
-            assert(dut.rs2_o == 32'h0000_0000) else $fatal("Assertion failed: rs2_o != 2 at time %0t", $time);
+            assert(rs1 == 32'h0000_0001) else $fatal("Assertion failed: rs1_o != 1 at time %0t", $time);
+            assert(rs2 == 32'h0000_0000) else $fatal("Assertion failed: rs2_o != 2 at time %0t", $time);
             rs1_addr = 5'b11111;
             rs2_addr = 5'b00000;
             rd_addr = 5'b11111;
             rd = 32'hffff_ffff;
         #37.04;
-            assert(dut.rs1_o == 32'hffff_ffff) else $fatal("Assertion failed: rs1_o != ffffffff at time %0t", $time);
-            assert(dut.rs2_o == 32'h0000_0000) else $fatal("Assertion failed: rs2_o != 0 at time %0t", $time);
+            assert(rs1 == 32'hffff_ffff) else $fatal("Assertion failed: rs1_o != ffffffff at time %0t", $time);
+            assert(rs2 == 32'h0000_0000) else $fatal("Assertion failed: rs2_o != 0 at time %0t", $time);
             rs1_addr = 5'b11111;
             rs2_addr = 5'b00000;
             rd_addr = 5'b00000;
         #37.04;
-            assert(dut.rs1_o == 32'hffff_ffff) else $fatal("Assertion failed: rs1_o != ffffffff at time %0t", $time);
-            assert(dut.rs2_o == 32'h0000_0000) else $fatal("Assertion failed: rs2_o != 0 at time %0t", $time);
+            assert(rs1 == 32'hffff_ffff) else $fatal("Assertion failed: rs1_o != ffffffff at time %0t", $time);
+            assert(rs2 == 32'h0000_0000) else $fatal("Assertion failed: rs2_o != 0 at time %0t", $time);
             we = 1'b0;
         #37.04;
             $finish;

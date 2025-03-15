@@ -36,28 +36,26 @@ module data_mem_tb;
     end
 
     // Clock reset.
-    initial begin
-        clk = 1'b0;
-    end
-
+    initial clk = 1'b0;
+    // Matching Tang Nano 9K crystal frequency.
     always #18.52 clk = ~clk;
 
     initial begin
             we = 1'b0;
         #37.04;
             addr = 32'h0000_0004;
-            assert(dut.data_o == 32'h0000_0000) else $fatal("Assertion failed: data_o != 0000_0000 at time %0t", $time);
+            assert(data_o == 32'h0000_0000) else $fatal("Assertion failed: data_o != 0000_0000 at time %0t", $time);
         #37.04;
             addr = 32'h0000_0008;
-            assert(dut.data_o == 32'h0000_0001) else $fatal("Assertion failed: data_o != 0000_0001 at time %0t", $time);
+            assert(data_o == 32'h0000_0001) else $fatal("Assertion failed: data_o != 0000_0001 at time %0t", $time);
         #37.04;
             // Write data
             we = 1'b1;
             addr = 32'h0000_0000;
             data_i = 32'h0000_0001;
-            assert(dut.data_o == 32'h0000_0002) else $fatal("Assertion failed: data_o != 0000_0002 at time %0t", $time);
+            assert(data_o == 32'h0000_0002) else $fatal("Assertion failed: data_o != 0000_0002 at time %0t", $time);
         #37.04;
-            assert(dut.data_o == 32'h0000_0001) else $fatal("Assertion failed: data_o != 0000_0001 at time %0t", $time);
+            assert(data_o == 32'h0000_0001) else $fatal("Assertion failed: data_o != 0000_0001 at time %0t", $time);
         $finish;
     end
 
