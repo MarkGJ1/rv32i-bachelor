@@ -1,0 +1,138 @@
+$date
+   Sat Mar 15 11:31:50 2025
+$end
+
+$version
+  2024.2.1
+  $dumpfile ("../../../../../../sim/branch_unit.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module branch_unit_tb $end
+$var reg 1 ! clk $end
+$var reg 1 " branch_i $end
+$var reg 3 # branch_op_i [2:0] $end
+$var reg 32 $ a_i [31:0] $end
+$var reg 32 % b_i [31:0] $end
+$var reg 1 & take_o $end
+$scope module dut $end
+$var wire 1 ' branch_i $end
+$var wire 3 ( branch_op_i [2:0] $end
+$var wire 32 ) a_i [31:0] $end
+$var wire 32 * b_i [31:0] $end
+$var reg 1 & take_o $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+1"
+b0 #
+b0 $
+b0 %
+1&
+1'
+b0 (
+b0 )
+b0 *
+$end
+
+#19000
+1!
+
+#37000
+b1 #
+0&
+b1 (
+
+#38000
+0!
+
+#57000
+1!
+
+#74000
+b1 %
+1&
+b1 *
+
+#76000
+0!
+
+#95000
+1!
+
+#111000
+b100 #
+b10001000100010001000100010001 $
+b10001000100010001000100010000 %
+0&
+b100 (
+b10001000100010001000100010001 )
+b10001000100010001000100010000 *
+
+#114000
+0!
+
+#133000
+1!
+
+#148000
+b101 #
+1&
+b101 (
+
+#152000
+0!
+
+#171000
+1!
+
+#185000
+b110 #
+0&
+b110 (
+
+#190000
+0!
+
+#209000
+1!
+
+#222000
+b111 #
+1&
+b111 (
+
+#228000
+0!
+
+#247000
+1!
+
+#259000
+b10 #
+1&
+b10 (
+
+#266000
+0!
+
+#285000
+1!
+
+#296000
+0"
+0&
+0'
+
+#304000
+0!
+
+#323000
+1!
