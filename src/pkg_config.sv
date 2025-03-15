@@ -14,4 +14,7 @@ package pkg_config;
     //Used in instr_mem.sv
     localparam int INST_WIDTH = 32;
 
+    //Used in sign_extension_unit.sv
+    localparam int OPCODE = 7;
+
 endpackage
