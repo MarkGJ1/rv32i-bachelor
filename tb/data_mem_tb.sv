@@ -44,18 +44,18 @@ module data_mem_tb;
             we = 1'b0;
         #37.04;
             addr = 32'h0000_0004;
-            assert(data_o == 32'h0000_0000) else $fatal("Assertion failed: data_o != 0000_0000 at time %0t", $time);
+            assert(data_o == 32'h0000_0000) else $fatal(1,"Assertion failed: data_o != 0000_0000 at time %0t", $time);
         #37.04;
             addr = 32'h0000_0008;
-            assert(data_o == 32'h0000_0001) else $fatal("Assertion failed: data_o != 0000_0001 at time %0t", $time);
+            assert(data_o == 32'h0000_0001) else $fatal(1,"Assertion failed: data_o != 0000_0001 at time %0t", $time);
         #37.04;
             // Write data
             we = 1'b1;
             addr = 32'h0000_0000;
             data_i = 32'h0000_0001;
-            assert(data_o == 32'h0000_0002) else $fatal("Assertion failed: data_o != 0000_0002 at time %0t", $time);
+            assert(data_o == 32'h0000_0002) else $fatal(1,"Assertion failed: data_o != 0000_0002 at time %0t", $time);
         #37.04;
-            assert(data_o == 32'h0000_0001) else $fatal("Assertion failed: data_o != 0000_0001 at time %0t", $time);
+            assert(data_o == 32'h0000_0001) else $fatal(1,"Assertion failed: data_o != 0000_0001 at time %0t", $time);
         $finish;
     end
 
