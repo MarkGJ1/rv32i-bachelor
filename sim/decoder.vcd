@@ -1,0 +1,263 @@
+$date
+   Wed Mar 19 14:11:51 2025
+$end
+
+$version
+  2024.2.1
+  $dumpfile ("../../../../../../sim/decoder.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module decoder_tb $end
+$var reg 1 ! clk $end
+$var reg 32 " inst [31:0] $end
+$var wire 7 # opcode [6:0] $end
+$var wire 1 $ branch $end
+$var wire 2 % result_mux [1:0] $end
+$var wire 3 & branch_op [2:0] $end
+$var wire 1 ' mem_write $end
+$var wire 1 ( alu_src_a $end
+$var wire 1 ) alu_src_b $end
+$var wire 1 * reg_write $end
+$var wire 6 + alu_op [5:0] $end
+$var wire 5 , rs1_addr [4:0] $end
+$var wire 5 - rs2_addr [4:0] $end
+$var wire 5 . rd_addr [4:0] $end
+$scope module dut $end
+$var wire 32 / inst_i [31:0] $end
+$var wire 7 # opcode_o [6:0] $end
+$var reg 1 0 branch_o $end
+$var reg 2 1 result_mux_o [1:0] $end
+$var reg 3 2 branch_op_o [2:0] $end
+$var reg 1 3 mem_write_o $end
+$var reg 1 4 alu_src_a_o $end
+$var reg 1 5 alu_src_b_o $end
+$var reg 1 6 reg_write_o $end
+$var reg 6 7 alu_op_o [5:0] $end
+$var wire 5 , rs1_addr_o [4:0] $end
+$var wire 5 - rs2_addr_o [4:0] $end
+$var wire 5 . rd_addr_o [4:0] $end
+$var wire 7 8 opcode [6:0] $end
+$var wire 7 9 funct_7 [6:0] $end
+$var wire 3 : funct_3 [2:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+b1111011001010110111 "
+b110111 #
+0$
+b0 %
+b0 &
+0'
+0(
+1)
+1*
+b11001 +
+b0 ,
+b0 -
+b101 .
+b1111011001010110111 /
+00
+b0 1
+b0 2
+03
+04
+15
+16
+b11001 7
+b110111 8
+b0 9
+b11 :
+$end
+
+#19000
+1!
+
+#37000
+b1111011001010010111 "
+b10111 #
+1(
+b1111 ,
+b1111011001010010111 /
+14
+15
+16
+b10111 8
+
+#38000
+0!
+
+#57000
+1!
+
+#74000
+b1001101000000000000101111101111 "
+b1101111 #
+1$
+b1 %
+b10 &
+b0 ,
+b10000 -
+b10111 .
+b1001101000000000000101111101111 /
+10
+b1 1
+b10 2
+14
+15
+16
+b1101111 8
+b100110 9
+b0 :
+
+#76000
+0!
+
+#95000
+1!
+
+#111000
+b1001101000000000000101111100111 "
+b1100111 #
+0(
+b1001101000000000000101111100111 /
+10
+b1 1
+b10 2
+04
+15
+16
+b1100111 8
+
+#114000
+0!
+
+#133000
+1!
+
+#148000
+b11100100100100010101100011 "
+b1100011 #
+b0 %
+b100 &
+1(
+0*
+b100 ,
+b11001 -
+b1010 .
+b11100100100100010101100011 /
+10
+b0 1
+b100 2
+14
+15
+06
+b1100011 8
+b1 9
+b100 :
+
+#152000
+0!
+
+#171000
+1!
+
+#185000
+b1011100010011011100000011 "
+b11 #
+0$
+b10 %
+b0 &
+0(
+1*
+b10 ,
+b10111 -
+b1110 .
+b1011100010011011100000011 /
+00
+b10 1
+b0 2
+04
+15
+16
+b11 8
+b0 9
+b11 :
+
+#190000
+0!
+
+#209000
+1!
+
+#222000
+b111000010010101110100011 "
+b100011 #
+b0 %
+1'
+0*
+b1110 -
+b10111 .
+b111000010010101110100011 /
+b0 1
+13
+15
+06
+b100011 8
+b10 :
+
+#228000
+0!
+
+#247000
+1!
+
+#259000
+b111100001100000110110011 "
+b110011 #
+0'
+0)
+1*
+b100001 +
+b1 ,
+b1111 -
+b11 .
+b111100001100000110110011 /
+03
+05
+16
+b100001 7
+b110011 8
+b100 :
+
+#266000
+0!
+
+#285000
+1!
+
+#296000
+b10000000100000000100010011 "
+b10011 #
+1)
+b11001 +
+b100 ,
+b0 -
+b10 .
+b10000000100000000100010011 /
+15
+16
+b11001 7
+b10011 8
+b1 9
+b0 :
+
+#304000
+0!
