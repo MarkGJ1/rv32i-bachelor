@@ -35,10 +35,7 @@ module register_file (
         end
     end
 
-    // Continuous read logic
-    always_comb begin
-        rs1_o = registers[rs1_addr_i];
-        rs2_o = registers[rs2_addr_i];
-    end
+    assign rs1_o = registers[rs1_addr_i];
+    assign rs2_o = registers[rs2_addr_i];
     
 endmodule
