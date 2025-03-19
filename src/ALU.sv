@@ -7,7 +7,7 @@
 
 import pkg_config::*;
 
-module alu (
+module alu_unit (
     input wire [5:0] alu_op_i,
     input wire [DATA_WIDTH - 1:0] a_i,
     input wire [DATA_WIDTH - 1:0] b_i,
