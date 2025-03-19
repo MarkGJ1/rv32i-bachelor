@@ -38,52 +38,52 @@ module branch_unit_tb;
         a_i = 32'h00000000;
         b_i = 32'h00000000;
         branch_i = 1'b1;
-        branch_op_i = `BRANCH_BEQ;
+        branch_op_i = BRANCH_BEQ;
         #37.04;
-        assert(take_o == 1'b1) else $fatal("Assertion failed: take_o != 1'b1 at time %0t", $time);
+        assert(take_o == 1'b1) else $fatal(1,"Assertion failed: take_o != 1'b1 at time %0t", $time);
 
         // Test 2: BNE (Branch Not Equal)
-        branch_op_i = `BRANCH_BNE;
+        branch_op_i = BRANCH_BNE;
         #37.04;
-        assert(take_o == 1'b0) else $fatal("Assertion failed: take_o != 1'b0 at time %0t", $time);
+        assert(take_o == 1'b0) else $fatal(1,"Assertion failed: take_o != 1'b0 at time %0t", $time);
 
         // Test 3: BNE with unequal values
         a_i = 32'h00000000;
         b_i = 32'h00000001;
         #37.04;
-        assert(take_o == 1'b1) else $fatal("Assertion failed: take_o != 1'b1 at time %0t", $time);
+        assert(take_o == 1'b1) else $fatal(1,"Assertion failed: take_o != 1'b1 at time %0t", $time);
 
         // Test 4: BLT (Branch Less Than)
         a_i = 32'h11111111; // -1
         b_i = 32'h11111110; // -2
-        branch_op_i = `BRANCH_BLT;
+        branch_op_i = BRANCH_BLT;
         #37.04;
-        assert(take_o == 1'b0) else $fatal("Assertion failed: take_o != 1'b0 at time %0t", $time);
+        assert(take_o == 1'b0) else $fatal(1,"Assertion failed: take_o != 1'b0 at time %0t", $time);
 
         // Test 5: BGE (Branch Greater Than or Equal)
-        branch_op_i = `BRANCH_BGE;
+        branch_op_i = BRANCH_BGE;
         #37.04;
-        assert(take_o == 1'b1) else $fatal("Assertion failed: take_o != 1'b1 at time %0t", $time);
+        assert(take_o == 1'b1) else $fatal(1,"Assertion failed: take_o != 1'b1 at time %0t", $time);
 
         // Test 6: BLTU (Branch Less Than Unsigned)
-        branch_op_i = `BRANCH_BLTU;
+        branch_op_i = BRANCH_BLTU;
         #37.04;
-        assert(take_o == 1'b0) else $fatal("Assertion failed: take_o != 1'b0 at time %0t", $time);
+        assert(take_o == 1'b0) else $fatal(1,"Assertion failed: take_o != 1'b0 at time %0t", $time);
 
         // Test 7: BGEU (Branch Greater Than or Equal Unsigned)
-        branch_op_i = `BRANCH_BGEU;
+        branch_op_i = BRANCH_BGEU;
         #37.04;
-        assert(take_o == 1'b1) else $fatal("Assertion failed: take_o != 1'b1 at time %0t", $time);
+        assert(take_o == 1'b1) else $fatal(1,"Assertion failed: take_o != 1'b1 at time %0t", $time);
 
         // Test 8: JAL/JALR (Always branch)
-        branch_op_i = `BRANCH_JAL_JALR;
+        branch_op_i = BRANCH_JAL_JALR;
         #37.04;
-        assert(take_o == 1'b1) else $fatal("Assertion failed: take_o != 1'b1 at time %0t", $time);
+        assert(take_o == 1'b1) else $fatal(1,"Assertion failed: take_o != 1'b1 at time %0t", $time);
 
         // Test 9: JAL/JALR with no branch
         branch_i = 1'b0;
         #37.04;
-        assert(take_o == 1'b0) else $fatal("Assertion failed: take_o != 1'b0 at time %0t", $time);
+        assert(take_o == 1'b0) else $fatal(1,"Assertion failed: take_o != 1'b0 at time %0t", $time);
 
         $finish;
     end

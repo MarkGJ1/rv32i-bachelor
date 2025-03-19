@@ -35,48 +35,48 @@ module alu_tb;
         $display("Starting ALU Testbench...");
 
         // ADD
-        a_i = 32'h0000_0001; b_i = 32'h0000_0001; alu_op_i = `OP_ALU_ADD;
-        #37.04 assert(c_o == 32'h0000_0002) else $fatal("Assertion failed ADD: c_o != 0000_0002 at time %0t", $time);
+        a_i = 32'h0000_0001; b_i = 32'h0000_0001; alu_op_i = OP_ALU_ADD;
+        #37.04 assert(c_o == 32'h0000_0002) else $fatal(1,"Assertion failed ADD: c_o != 0000_0002 at time %0t", $time);
 
         // SUB
-        a_i = 32'h0000_0001; b_i = 32'h0000_0001; alu_op_i = `OP_ALU_SUB;
-        #37.04 assert(c_o == 32'h0000_0000) else $fatal("Assertion failed SUB: c_o != 0000_0000 at time %0t", $time);
+        a_i = 32'h0000_0001; b_i = 32'h0000_0001; alu_op_i = OP_ALU_SUB;
+        #37.04 assert(c_o == 32'h0000_0000) else $fatal(1,"Assertion failed SUB: c_o != 0000_0000 at time %0t", $time);
 
         // AND
-        a_i = 32'h0000_0101; b_i = 32'h0001_0001; alu_op_i = `OP_ALU_AND;
-        #37.04 assert(c_o == 32'h0000_0001) else $fatal("Assertion failed AND: c_o != 0000_0001 at time %0t", $time);
+        a_i = 32'h0000_0101; b_i = 32'h0001_0001; alu_op_i = OP_ALU_AND;
+        #37.04 assert(c_o == 32'h0000_0001) else $fatal(1,"Assertion failed AND: c_o != 0000_0001 at time %0t", $time);
 
         // OR
-        a_i = 32'h0000_0101; b_i = 32'h0001_0001; alu_op_i = `OP_ALU_OR;
-        #37.04 assert(c_o == 32'h0001_0101) else $fatal("Assertion failed OR: c_o != 0001_0101 at time %0t", $time);
+        a_i = 32'h0000_0101; b_i = 32'h0001_0001; alu_op_i = OP_ALU_OR;
+        #37.04 assert(c_o == 32'h0001_0101) else $fatal(1,"Assertion failed OR: c_o != 0001_0101 at time %0t", $time);
 
         // XOR
-        a_i = 32'h0000_0101; b_i = 32'h0001_0001; alu_op_i = `OP_ALU_XOR;
-        #37.04 assert(c_o == 32'h0001_0100) else $fatal("Assertion failed XOR: c_o != 0001_0100 at time %0t", $time);
+        a_i = 32'h0000_0101; b_i = 32'h0001_0001; alu_op_i = OP_ALU_XOR;
+        #37.04 assert(c_o == 32'h0001_0100) else $fatal(1,"Assertion failed XOR: c_o != 0001_0100 at time %0t", $time);
 
         // SLT (Signed)
-        a_i = 32'hFFFF_FFF0; b_i = 32'h0000_0010; alu_op_i = `OP_ALU_SLT;
-        #37.04 assert(c_o == 32'h0000_0001) else $fatal("Assertion failed SLT: c_o != 0000_0001 at time %0t", $time); // -16 < 16 → 1
+        a_i = 32'hFFFF_FFF0; b_i = 32'h0000_0010; alu_op_i = OP_ALU_SLT;
+        #37.04 assert(c_o == 32'h0000_0001) else $fatal(1,"Assertion failed SLT: c_o != 0000_0001 at time %0t", $time); // -16 < 16 → 1
 
         // SLTU (Unsigned)
-        a_i = 32'h0000_0010; b_i = 32'hFFFF_FFF0; alu_op_i = `OP_ALU_SLTU;
-        #37.04 assert(c_o == 32'h0000_0001) else $fatal("Assertion failed SLTU: c_o != 0000_0001 at time %0t", $time); // 16 < large unsigned → 1
+        a_i = 32'h0000_0010; b_i = 32'hFFFF_FFF0; alu_op_i = OP_ALU_SLTU;
+        #37.04 assert(c_o == 32'h0000_0001) else $fatal(1,"Assertion failed SLTU: c_o != 0000_0001 at time %0t", $time); // 16 < large unsigned → 1
 
         // SLL (Logical Shift Left)
-        a_i = 32'h0000_0001; b_i = 32'h0000_0004; alu_op_i = `OP_ALU_SLL;
-        #37.04 assert(c_o == 32'h0000_0010) else $fatal("Assertion failed SLL: c_o != 0000_0010 at time %0t", $time);
+        a_i = 32'h0000_0001; b_i = 32'h0000_0004; alu_op_i = OP_ALU_SLL;
+        #37.04 assert(c_o == 32'h0000_0010) else $fatal(1,"Assertion failed SLL: c_o != 0000_0010 at time %0t", $time);
 
         // SRL (Logical Shift Right)
-        a_i = 32'h0000_0100; b_i = 32'h0000_0001; alu_op_i = `OP_ALU_SRL;
-        #37.04 assert(c_o == 32'h0000_0080) else $fatal("Assertion failed SRL: c_o != 0000_0080 at time %0t", $time);
+        a_i = 32'h0000_0100; b_i = 32'h0000_0001; alu_op_i = OP_ALU_SRL;
+        #37.04 assert(c_o == 32'h0000_0080) else $fatal(1,"Assertion failed SRL: c_o != 0000_0080 at time %0t", $time);
 
         // SRA (Arithmetic Shift Right)
-        a_i = 32'hFFFF_F000; b_i = 32'h0000_0004; alu_op_i = `OP_ALU_SRA;
-        #37.04 assert(c_o == 32'hFFFF_FF00) else $fatal("Assertion failed SRA: c_o != FFFF_FF00 at time %0t", $time); // Sign bit extended
+        a_i = 32'hFFFF_F000; b_i = 32'h0000_0004; alu_op_i = OP_ALU_SRA;
+        #37.04 assert(c_o == 32'hFFFF_FF00) else $fatal(1,"Assertion failed SRA: c_o != FFFF_FF00 at time %0t", $time); // Sign bit extended
 
         // SRA with Large Shift
-        a_i = 32'h8000_0000; b_i = 32'h0000_001F; alu_op_i = `OP_ALU_SRA;
-        #37.04 assert(c_o == 32'hFFFF_FFFF) else $fatal("Assertion failed SRA LS: c_o != FFFF_FFFF at time %0t", $time); // Sign bit replicated
+        a_i = 32'h8000_0000; b_i = 32'h0000_001F; alu_op_i = OP_ALU_SRA;
+        #37.04 assert(c_o == 32'hFFFF_FFFF) else $fatal(1,"Assertion failed SRA LS: c_o != FFFF_FFFF at time %0t", $time); // Sign bit replicated
 
         $display("All ALU Tests Passed!");
         $finish;

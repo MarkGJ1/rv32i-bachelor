@@ -29,23 +29,23 @@ module inst_mem_tb;
 
     initial begin
         #10;
-            assert(inst == 32'h00108113) else $fatal("Assertion failed: inst != 32'h00108113 at time %0t", $time); 
+            assert(inst == 32'h00108113) else $fatal(1,"Assertion failed: inst != 32'h00108113 at time %0t", $time); 
         #10;
             addr = 32'h00000004;
         #10;
-            assert(inst == 32'h00108193) else $fatal("Assertion failed: inst != 32'h00108193 at time %0t", $time); 
+            assert(inst == 32'h00108193) else $fatal(1,"Assertion failed: inst != 32'h00108193 at time %0t", $time); 
         #10;
             addr = 32'h00000008;
         #10;
-            assert(inst == 32'h00310233) else $fatal("Assertion failed: inst != 32'h00310233 at time %0t", $time); 
+            assert(inst == 32'h00310233) else $fatal(1,"Assertion failed: inst != 32'h00310233 at time %0t", $time); 
         #10;
             addr = 32'h0000000c;
         #10;
-            assert(inst == 32'hfe218ae3) else $fatal("Assertion failed: inst != 32'hfe218ae3 at time %0t", $time); 
+            assert(inst == 32'hfe218ae3) else $fatal(1,"Assertion failed: inst != 32'hfe218ae3 at time %0t", $time); 
         #10;
             addr = 32'h00000010;
         #10;
-            assert(inst == 32'h00000000) else $fatal("Assertion failed: inst != 32'h00000000 at time %0t", $time); 
+            assert(inst == 32'h00000000) else $fatal(1,"Assertion failed: inst != 32'h00000000 at time %0t", $time); 
         $finish;
     end
 
