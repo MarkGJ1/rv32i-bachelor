@@ -14,7 +14,7 @@ module alu_unit (
     output logic [DATA_WIDTH - 1:0] c_o
 );
 
-    always @(*) begin
+    always_comb begin
         unique case (alu_op_i)
             OP_ALU_ADD:  c_o = a_i + b_i;             
             OP_ALU_SUB:  c_o = a_i - b_i;

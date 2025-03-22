@@ -180,6 +180,19 @@ module decoder_tb;
         //assert(dut.rs2_addr_o == 5'b00000) else $fatal(1,"Assertion failed: dut.branch_o != 0 at time %0t", $time);
         assert(dut.rd_addr_o == 5'b00010)   else $fatal(1,"Assertion failed: dut.rd_addr_o != 00010 at time %0t", $time);
 
+        inst = 32'h00C00293; // addi x5, x0, 12
+        #37.04;
+        assert(dut.opcode_o == OP_ALUI)     else $fatal(1,"Assertion failed: dut.opcode_o != OP_ALUI at time %0t", $time);
+        assert(dut.branch_o == 1'b0)        else $fatal(1,"Assertion failed: dut.branch_o != 0 at time %0t", $time);
+        assert(dut.result_mux_o == 2'b00)   else $fatal(1,"Assertion failed: dut.result_mux_o != 0 at time %0t", $time);
+        assert(dut.mem_write_o == 1'b0)     else $fatal(1,"Assertion failed: dut.mem_write_o != 0 at time %0t", $time);
+        assert(dut.alu_src_a_o == 1'b0)     else $fatal(1,"Assertion failed: dut.alu_src_a_o != 0 at time %0t", $time);
+        assert(dut.alu_src_b_o == 1'b1)     else $fatal(1,"Assertion failed: dut.alu_src_b_o != 1 at time %0t", $time);
+        assert(dut.reg_write_o == 1'b1)     else $fatal(1,"Assertion failed: dut.reg_write_o != 1 at time %0t", $time);
+        assert(dut.alu_op_o == OP_ALU_ADD)  else $fatal(1,"Assertion failed: dut.alu_op_o != OP_ALU_ADD at time %0t", $time);
+        assert(dut.rs1_addr_o == 5'b00000)  else $fatal(1,"Assertion failed: dut.rs1_addr_o != 00100 at time %0t", $time);
+        assert(dut.rd_addr_o == 5'b00101)   else $fatal(1,"Assertion failed: dut.rd_addr_o != 00010 at time %0t", $time);
+
         $finish;
     end
 
