@@ -21,11 +21,10 @@ module register_file (
 );
     // 32 registers, each 32 bits wide
     logic [DATA_WIDTH-1:0] registers [NUM_REGISTER-1:0];
-    integer i;
 
     always_ff @(posedge clk_i or negedge rst_n_i) begin
         if (!rst_n_i) begin // Active-low reset
-            for (i = 0; i < NUM_REGISTER; i = i + 1) begin
+            for (int i = 0; i < NUM_REGISTER; i = i + 1) begin
                 registers[i] <= 0;  // Use non-blocking assignment for registers
             end
         end else begin

@@ -19,7 +19,6 @@ module decoder (
     output logic alu_src_a_o, // 0 = reg, 1 = pc
     output logic alu_src_b_o, // 0 = reg, 1 = imme
     output logic reg_write_o,
-    
     output logic [5:0] alu_op_o,
     output wire [$clog2(NUM_REGISTER) - 1:0] rs1_addr_o,
     output wire [$clog2(NUM_REGISTER) - 1:0] rs2_addr_o,
@@ -27,7 +26,7 @@ module decoder (
 );
 
     wire [OPCODE-1:0] opcode = inst_i[OPCODE-1:0];
-    wire [FUNCT_7-1:0] funct_7 = inst_i[INST_WIDTH-1:INST_WIDTH-FUNCT_7];
+    wire [FUNCT_7-1:0] funct_7 = inst_i[INST_WIDTH-1:INST_WIDTH - FUNCT_7];
     wire [2:0] funct_3 = inst_i[14:12];
 
     always_comb begin

@@ -14,10 +14,12 @@ module inst_mem_tb;
 
     localparam MEM_SIZE = 1024;
     logic [$clog2(MEM_SIZE)-1:0] addr = 32'h00000000;
+    logic rst;
     wire [INST_WIDTH-1:0] inst;
 
     instruction_memory dut (
         .addr_i(addr),
+        .rst_n_i(rst),
         .inst_o(inst)
     );
   
