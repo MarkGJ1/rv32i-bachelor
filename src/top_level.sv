@@ -13,7 +13,7 @@ import pkg_config::*;
 module top (
     input wire clk,
     input wire rst,
-    output wire [DATA_WIDTH-1:0] debug,
+    output wire [DATA_WIDTH-1:0] debug
 );
 	
     wire [INST_WIDTH-1:0] immediate;
