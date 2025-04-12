@@ -1,7 +1,10 @@
 # rv32i-bachelor
 A scan-testable RISC-V core implementation (instruction decoder and register file) using SystemVerilog
+
 Implementation directly inspired from the [bit-spinner](https://www.bit-spinner.com/rv32i/rv32i-introduction) website.
-This project aims to improve upon the implementation with SystemVerilog syntax + add scan-testability.
+This project aims to improve upon the implementation with SystemVerilog syntax, address issues with the design and
+add scan testability.
+
 
 ## Project Structure
 - src: directory for all rv32i modules.
