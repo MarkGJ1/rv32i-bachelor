@@ -2,7 +2,7 @@
     File name: data_mem_tb.sv
     Description: This file contains the testbench for the data memory.
     Author: Marko Gjorgjievski
-    Date: 15.01.2025
+    Date created: 15.01.2025
 */
 
 import pkg_config::*;
@@ -15,6 +15,7 @@ module data_mem_tb;
     localparam MEM_SIZE = 1024;
 
     logic clk;
+    logic rst;
     logic we;
     logic [DATA_WIDTH - 1:0] data_i = 32'h0000_0000;
     logic [$clog2(MEM_SIZE) - 1:0] addr = 32'h0000_0000;
@@ -23,6 +24,7 @@ module data_mem_tb;
 
     data_memory dut(
         .clk_i(clk),
+        .rst_n_i(rst),
         .we_i(we),
         .addr_i(addr),
         .data_i(data_i),

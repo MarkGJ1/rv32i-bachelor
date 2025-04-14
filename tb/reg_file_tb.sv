@@ -2,7 +2,7 @@
     File name: reg_file_tb.sv
     Description: Testbench for register file.
     Author: Marko Gjorgjievski
-    Date: 13.01.2025
+    Date created: 13.01.2025
 */
 
 import pkg_config::*;

@@ -2,7 +2,8 @@
     File name: instr_mem_tb.sv
     Description: Testbench for instruction memory file.
     Author: Marko Gjorgjievski
-    Date: 13.01.2025
+    Date created: 13.01.2025
+    Date modified: 13.04.2025
 */
 
 import pkg_config::*;

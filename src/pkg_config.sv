@@ -2,7 +2,8 @@
     File name: pkg_config.sv
     Description: Package used for constant values.
     Author: Marko Gjorgjievski
-    Date: 13.01.2025
+    Date created: 13.01.2025
+    Date modified: 14.04.2025
 */
 
 package pkg_config;
