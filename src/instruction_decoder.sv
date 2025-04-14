@@ -1,8 +1,11 @@
 /*
     File name: instruction_decoder.sv
-    Description: This file contains the module for the instruction decoder.
+    Description: Instruction decoders translate fetched instructions from
+                the instruction memory into meaningful actions such as 
+                controlling other components and deriving data values.
     Author: Marko Gjorgjievski
-    Date: 15.01.2025
+    Date created: 15.03.2025
+    Date modified: 14.04.2025
 */
 
 import pkg_config::*;
@@ -20,16 +23,16 @@ module decoder (
     output logic alu_src_b_o, // 0 = reg, 1 = imme
     output logic reg_write_o,
     output logic [5:0] alu_op_o,
-    output wire [$clog2(NUM_REGISTER) - 1:0] rs1_addr_o,
-    output wire [$clog2(NUM_REGISTER) - 1:0] rs2_addr_o,
-    output wire [$clog2(NUM_REGISTER) - 1:0] rd_addr_o
+    output logic [$clog2(NUM_REGISTER) - 1:0] rs1_addr_o,
+    output logic [$clog2(NUM_REGISTER) - 1:0] rs2_addr_o,
+    output logic [$clog2(NUM_REGISTER) - 1:0] rd_addr_o
 );
 
     wire [OPCODE-1:0] opcode = inst_i[OPCODE-1:0];
     wire [FUNCT_7-1:0] funct_7 = inst_i[INST_WIDTH-1:INST_WIDTH - FUNCT_7];
     wire [2:0] funct_3 = inst_i[14:12];
 
-    always_comb begin
+    always @* begin // TODO: Potential latches to be fixed.
         branch_o = 0;
         result_mux_o = 2'b00;
         alu_op_o = OP_ALU_ADD;
