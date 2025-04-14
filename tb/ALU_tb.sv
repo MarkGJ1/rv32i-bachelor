@@ -18,7 +18,7 @@ module alu_tb;
     logic [DATA_WIDTH - 1:0] b_i = 32'h00000000;
     wire [DATA_WIDTH - 1:0] c_o;
 
-    alu dut (
+    alu_unit dut (
         .alu_op_i(alu_op_i),
         .a_i(a_i),
         .b_i(b_i),
