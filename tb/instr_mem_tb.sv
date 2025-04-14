@@ -2,7 +2,8 @@
     File name: instr_mem_tb.sv
     Description: Testbench for instruction memory file.
     Author: Marko Gjorgjievski
-    Date: 13.01.2025
+    Date created: 13.01.2025
+    Date modified: 13.04.2025
 */
 
 import pkg_config::*;
@@ -14,12 +15,10 @@ module inst_mem_tb;
 
     localparam MEM_SIZE = 1024;
     logic [$clog2(MEM_SIZE)-1:0] addr = 32'h00000000;
-    logic rst;
     wire [INST_WIDTH-1:0] inst;
 
     instruction_memory dut (
         .addr_i(addr),
-        .rst_n_i(rst),
         .inst_o(inst)
     );
   

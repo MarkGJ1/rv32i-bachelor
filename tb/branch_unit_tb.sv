@@ -2,7 +2,7 @@
     File name: branch_unit.sv
     Description: This file contains the testbench for the branch unit.
     Author: Marko Gjorgjievski
-    Date: 15.01.2025
+    Date created: 15.01.2025
 */
 
 import pkg_config::*;

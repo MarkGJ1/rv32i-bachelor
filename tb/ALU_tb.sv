@@ -2,7 +2,7 @@
     File name: ALU_tb.sv
     Description: This file contains the testbench for the ALU.
     Author: Marko Gjorgjievski
-    Date: 15.01.2025
+    Date created: 15.01.2025
 */
 
 import pkg_config::*;

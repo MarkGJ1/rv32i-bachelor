@@ -1,3 +1,15 @@
-00500293  
-00500313  
-00628C63
+// Instructions verified and tested to be working.
+// https://luplab.gitlab.io/rvcodecjs/ for Instructions.
+// Used for testing top level.
+00500093  // ADDI x1, x0, 5
+00A00113  // ADDI x2, x0, 10
+002081B3  // ADD x3, x1, x2
+00120233  // SUB x4, x2, x1
+0020F2B3  // AND x5, x1, x2
+0020E333  // OR x6, x1, x2
+0020C3B3  // XOR x7, x1, x2
+00302023  // SW x3, 0(x0)
+00002403  // LW x8, 0(x0)
+00340463  // BEQ x8, x3, +8 bytes (skip one instr)
+02A00493  // ADDI x9, x0, 42 (should be skipped)
+00000073  // ECALL

@@ -2,7 +2,7 @@
     File name: data_mem_tb.sv
     Description: This file contains the testbench for the data memory.
     Author: Marko Gjorgjievski
-    Date: 15.01.2025
+    Date created: 15.01.2025
 */
 
 import pkg_config::*;
