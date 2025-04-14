@@ -1,8 +1,10 @@
 /*
     File name: reg_file.sv
-    Description: This file describes the register file.
+    Description: Register file describes the data width and number of
+                RV32I registers used for temporary data storage during operation.
     Author: Marko Gjorgjievski
-    Date: 13.01.2025
+    Date created: 13.01.2025
+    Date modified: 14.04.2025
 */
 
 import pkg_config::*;
@@ -16,8 +18,8 @@ module register_file (
     input wire [$clog2(NUM_REGISTER)-1:0] rs1_addr_i,
     input wire [$clog2(NUM_REGISTER)-1:0] rs2_addr_i,
 
-    output wire [DATA_WIDTH-1:0] rs1_o,
-    output wire [DATA_WIDTH-1:0] rs2_o
+    output logic [DATA_WIDTH-1:0] rs1_o,
+    output logic [DATA_WIDTH-1:0] rs2_o
 );
     // 32 registers, each 32 bits wide
     logic [DATA_WIDTH-1:0] registers [NUM_REGISTER-1:0];
@@ -34,7 +36,9 @@ module register_file (
         end
     end
 
-    assign rs1_o = registers[rs1_addr_i];
-    assign rs2_o = registers[rs2_addr_i];
+    // Avoiding unknown with ternary operator. 
+    // TODO: Test with simulation if necessary after TAP implementation.
+    assign rs1_o = (rs1_addr_i === 'x || rs1_addr_i >= NUM_REGISTER) ? 0 : registers[rs1_addr_i];
+    assign rs2_o = (rs2_addr_i === 'x || rs2_addr_i >= NUM_REGISTER) ? 0 : registers[rs2_addr_i];
     
 endmodule
