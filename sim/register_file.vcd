@@ -1,10 +1,10 @@
 $date
-   Wed Jan 29 20:33:28 2025
+   Sun Mar 23 16:30:22 2025
 $end
 
 $version
   2024.2.1
-  $dumpfile ("register_file.vcd") 
+  $dumpfile ("../../../../../../sim/register_file.vcd") 
 $end
 
 $timescale
@@ -31,7 +31,9 @@ $var wire 5 / rs1_addr_i [4:0] $end
 $var wire 5 0 rs2_addr_i [4:0] $end
 $var wire 32 ( rs1_o [31:0] $end
 $var wire 32 ) rs2_o [31:0] $end
-$var integer 32 1 i [31:0] $end
+$scope begin Block27_1 $end
+$var reg 32 1 i [31:0] $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -133,3 +135,7 @@ b0 -
 #152000
 0!
 0*
+
+#171000
+1!
+1*
