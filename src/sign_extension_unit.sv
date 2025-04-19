@@ -11,8 +11,8 @@
 import pkg_config::*;
 
 module sign_extension (
-    input wire [INST_WIDTH - 1:0] inst_i,                // Original 32-bit instruction
-    input wire [OPCODE - 1:0] opcode_i,                   // Opcode for instruction
+    input logic [INST_WIDTH - 1:0] inst_i,                // Original 32-bit instruction
+    input logic [OPCODE - 1:0] opcode_i,                   // Opcode for instruction
     output logic [DATA_WIDTH - 1:0] immediate_extended_o   // Extended 32-bit immediate value    
 );
 

@@ -10,10 +10,10 @@
 import pkg_config::*;
 
 module branch_unit (
-    input wire branch_i,
-    input wire [2:0] branch_op_i,
-    input wire [DATA_WIDTH - 1:0] a_i,
-    input wire [DATA_WIDTH - 1:0] b_i,
+    input logic branch_i,
+    input logic [2:0] branch_op_i,
+    input logic [DATA_WIDTH - 1:0] a_i,
+    input logic [DATA_WIDTH - 1:0] b_i,
     output logic take_o
 );
 
