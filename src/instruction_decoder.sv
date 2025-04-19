@@ -11,9 +11,8 @@
 import pkg_config::*;
 
 module decoder (
-    input wire [INST_WIDTH-1:0] inst_i,
-    output wire [OPCODE-1:0] opcode_o,
-    
+    input logic [INST_WIDTH-1:0] inst_i,
+    output logic [OPCODE-1:0] opcode_o,
     // Control Signals
     output logic branch_o,
     output logic [1:0] result_mux_o, // # alu= 2'b00, pc+4 = 2'b01, mem = 2'b10
@@ -28,6 +27,8 @@ module decoder (
     output logic [$clog2(NUM_REGISTER) - 1:0] rd_addr_o
 );
 
+    // TODO: Debug. When logic is used here, fatal error at top sim.
+    // Probably the type of assignment is the problem "=", its like initialization.
     wire [OPCODE-1:0] opcode = inst_i[OPCODE-1:0];
     wire [FUNCT_7-1:0] funct_7 = inst_i[INST_WIDTH-1:INST_WIDTH - FUNCT_7];
     wire [2:0] funct_3 = inst_i[14:12];

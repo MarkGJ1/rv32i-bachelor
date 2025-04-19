@@ -10,9 +10,9 @@
 import pkg_config::*;
 
 module alu_unit (
-    input wire [5:0] alu_op_i,
-    input wire [DATA_WIDTH - 1:0] a_i,
-    input wire [DATA_WIDTH - 1:0] b_i,
+    input logic [5:0] alu_op_i,
+    input logic [DATA_WIDTH - 1:0] a_i,
+    input logic [DATA_WIDTH - 1:0] b_i,
     output logic [DATA_WIDTH - 1:0] c_o
 );
 

@@ -15,8 +15,8 @@ module top #(
     // MEM_SIZE in Words
     parameter MEM_SIZE_INST = 1024
 )   (
-    input wire clk,
-    input wire rst,
+    input logic clk,
+    input logic rst,
     output logic [INST_WIDTH - 1:0] debug
 );
 

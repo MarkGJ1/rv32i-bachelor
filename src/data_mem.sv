@@ -14,10 +14,10 @@ module data_memory #(
     // MEM_SIZE in Words (1024 * 4)
     parameter MEM_SIZE = 1024
 ) (
-    input wire clk_i,
-    input wire we_i,
-    input wire [DATA_WIDTH - 1:0] data_i,
-    input wire [$clog2(MEM_SIZE) - 1:0] addr_i,
+    input logic clk_i,
+    input logic we_i,
+    input logic [DATA_WIDTH - 1:0] data_i,
+    input logic [$clog2(MEM_SIZE) - 1:0] addr_i,
     output logic [DATA_WIDTH - 1:0] data_o
 );
 
