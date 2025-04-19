@@ -1,8 +1,9 @@
 /*
     File name: ALU.sv
-    Description: This file contains the module for the ALU.
+    Description: This file contains the testbench
+                for the RV32I core.
     Author: Marko Gjorgjievski
-    Date: 15.01.2025
+    Date created: 15.01.2025
 */
 
 import pkg_config::*;
