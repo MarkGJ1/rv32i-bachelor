@@ -3,7 +3,7 @@
     Description: This file contains the testbench 
                 for the sign extension unit.
     Author: Marko Gjorgjievski
-    Date: 15.03.2025
+    Date created: 17.03.2025
 */
 
 import pkg_config::*;
