@@ -10,13 +10,13 @@
 import pkg_config::*;
 
 module register_file (
-    input wire clk_i,
-    input wire rst_n_i, // Active-low reset
-    input wire we_i,
-    input wire [$clog2(NUM_REGISTER)-1:0] rd_addr_i,
-    input wire [DATA_WIDTH-1:0] rd_i,
-    input wire [$clog2(NUM_REGISTER)-1:0] rs1_addr_i,
-    input wire [$clog2(NUM_REGISTER)-1:0] rs2_addr_i,
+    input logic clk_i,
+    input logic rst_n_i, // Active-low reset
+    input logic we_i,
+    input logic [$clog2(NUM_REGISTER)-1:0] rd_addr_i,
+    input logic [DATA_WIDTH-1:0] rd_i,
+    input logic [$clog2(NUM_REGISTER)-1:0] rs1_addr_i,
+    input logic [$clog2(NUM_REGISTER)-1:0] rs2_addr_i,
 
     output logic [DATA_WIDTH-1:0] rs1_o,
     output logic [DATA_WIDTH-1:0] rs2_o
