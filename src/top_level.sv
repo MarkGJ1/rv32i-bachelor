@@ -20,32 +20,27 @@ module top #(
     output logic [INST_WIDTH - 1:0] debug
 );
 
-    /* Internal signals of top.
-        TODO: Double check when possible what should constitute
-            a wire and what should be logic. Current consesus is
-            to use "logic" whenever possible in sysVerilog.
-            Proven to be best to use "logic" to avoid unknowns 
-            in debug signal. */
+    // Internal signals of top.
     logic [$clog2(MEM_SIZE_INST)-1:0] pc_s; // imem (in), 
-    wire  [INST_WIDTH-1:0] inst_s; // imem (out), dec (in)
-    wire branch_s;
-    wire [1:0] result_mux_s;
-    wire [5:0] alu_op_s;
-    wire [2:0] branch_op_s;
-    wire mem_write_s;
-    wire alu_src_a_s;
-    wire alu_src_b_s;
-    wire reg_write_s;
-  	wire take_s;
-    wire [OPCODE-1:0] opcode_s;
-    wire [$clog2(NUM_REGISTER) - 1: 0] rs1_addr_s;
-    wire [$clog2(NUM_REGISTER) - 1: 0] rs2_addr_s;
-  	wire [$clog2(NUM_REGISTER) - 1: 0] rd_addr_s;
-    wire [DATA_WIDTH-1:0] sel_alu_src_a_s;
-    wire [DATA_WIDTH-1:0] sel_alu_src_b_s;
+    logic  [INST_WIDTH-1:0] inst_s; // imem (out), dec (in)
+    logic branch_s;
+    logic [1:0] result_mux_s;
+    logic [5:0] alu_op_s;
+    logic [2:0] branch_op_s;
+    logic mem_write_s;
+    logic alu_src_a_s;
+    logic alu_src_b_s;
+    logic reg_write_s;
+  	logic take_s;
+    logic [OPCODE-1:0] opcode_s;
+    logic [$clog2(NUM_REGISTER) - 1: 0] rs1_addr_s;
+    logic [$clog2(NUM_REGISTER) - 1: 0] rs2_addr_s;
+  	logic [$clog2(NUM_REGISTER) - 1: 0] rd_addr_s;
+    logic [DATA_WIDTH-1:0] sel_alu_src_a_s;
+    logic [DATA_WIDTH-1:0] sel_alu_src_b_s;
     logic [DATA_WIDTH-1:0] immediate_s;
-    wire [DATA_WIDTH-1:0] rs1_s;     
-    wire [DATA_WIDTH-1:0] rs2_s;
+    logic [DATA_WIDTH-1:0] rs1_s;     
+    logic [DATA_WIDTH-1:0] rs2_s;
     logic [DATA_WIDTH-1:0] data_s;
     logic [DATA_WIDTH-1:0] result_s;
     logic [DATA_WIDTH-1:0] rd_s;
