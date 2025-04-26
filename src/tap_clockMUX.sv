@@ -1,5 +1,5 @@
 /*
-    File name: tap_controller.sv
+    File name: tap_clockMUX.sv
     Description: Selecting chip clock or test clock for internal logic.
                 No testbench present nor in module used...
                 TODO: Remove module if deemed unnecessary.
