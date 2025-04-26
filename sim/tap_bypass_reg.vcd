@@ -1,0 +1,151 @@
+$date
+   Sat Apr 26 04:20:21 2025
+$end
+
+$version
+  2024.2.1
+  $dumpfile ("../../../../../../sim/tap_bypass_reg.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module tap_bypass_reg_tb $end
+$var reg 1 ! tck_i $end
+$var reg 1 " tdi_i $end
+$var reg 1 # tdo_o $end
+$var reg 1 $ bypassEna_i $end
+$var reg 8 % testData_s [7:0] $end
+$var reg 8 & testResult_s [7:0] $end
+$scope module dut $end
+$var wire 1 ' tck_i $end
+$var wire 1 ( tdi_i $end
+$var wire 1 ) bypassEna_i $end
+$var reg 1 # tdo_o $end
+$upscope $end
+$scope begin Block40_3 $end
+$var reg 32 * i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+0"
+0#
+1$
+b10101011 %
+b0 &
+0'
+0(
+1)
+b0 *
+$end
+
+#18520
+1!
+1"
+1#
+1'
+1(
+
+#18530
+b1 &
+b1 *
+
+#37040
+0!
+0'
+
+#55560
+1!
+1'
+
+#55570
+b11 &
+b10 *
+
+#74080
+0!
+0'
+
+#92600
+1!
+0"
+0#
+1'
+0(
+
+#92610
+b11 *
+
+#111120
+0!
+0'
+
+#129640
+1!
+1"
+1#
+1'
+1(
+
+#129650
+b1011 &
+b100 *
+
+#148160
+0!
+0'
+
+#166680
+1!
+0"
+0#
+1'
+0(
+
+#166690
+b101 *
+
+#185200
+0!
+0'
+
+#203720
+1!
+1"
+1#
+1'
+1(
+
+#203730
+b101011 &
+b110 *
+
+#222240
+0!
+0'
+
+#240760
+1!
+0"
+0#
+1'
+0(
+
+#240770
+b111 *
+
+#259280
+0!
+0'
+
+#277800
+1!
+1"
+1#
+1'
+1(
