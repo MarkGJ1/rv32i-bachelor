@@ -5,9 +5,9 @@
     Date created: 19.04.2025
 */
 
-import pb_pack::*;
+import tap_pkg::*;
 
-module pb_TAP_Controller(
+module tap_controller(
     input  logic tck_i,   // JTAG clock
     input  logic tms_i,   // JTAG mode select
     input  logic trst_i,  // JTAG reset
