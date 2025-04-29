@@ -5,22 +5,24 @@
     Date created: 19.04.2025
 */
 
+`timescale 1ns/10ps
+
 import tap_pkg::*;
 
 module tap_controller(
     input  logic tck_i,   // JTAG clock
     input  logic tms_i,   // JTAG mode select
     input  logic trst_i,  // JTAG reset
-    output logic shiftIR_o,     updateIR_o,
-    output logic shiftDR_o,     updateDR_o,
+    output logic shiftIR_o, updateIR_o, captureIR_o,
+    output logic shiftDR_o, updateDR_o, captureDR_o,
     output logic SelectIR_o,
     output logic Enable_o
 );
 
     typedef enum logic [3:0] {
         TEST_LOGIC_RESET, RUN_TEST_IDLE,
-        SELECT_DR_SCAN, SHIFT_DR, EXIT1_DR, PAUSE_DR, EXIT2_DR, UPDATE_DR,
-        SELECT_IR_SCAN, SHIFT_IR, EXIT1_IR, PAUSE_IR, EXIT2_IR, UPDATE_IR
+        SELECT_DR_SCAN, CAPTURE_DR, SHIFT_DR, EXIT1_DR, PAUSE_DR, EXIT2_DR, UPDATE_DR,
+        SELECT_IR_SCAN, CAPTURE_IR, SHIFT_IR, EXIT1_IR, PAUSE_IR, EXIT2_IR, UPDATE_IR
     } state_t;
 
     state_t currentState, nextState;
@@ -40,7 +42,8 @@ module tap_controller(
             RUN_TEST_IDLE:      nextState = tms_i ? SELECT_DR_SCAN   : RUN_TEST_IDLE;
 
             // DR path
-            SELECT_DR_SCAN:     nextState = tms_i ? SELECT_IR_SCAN   : SHIFT_DR;
+            SELECT_DR_SCAN:     nextState = tms_i ? SELECT_IR_SCAN   : CAPTURE_DR;
+            CAPTURE_DR:         nextState = tms_i ? EXIT1_DR         : SHIFT_DR;
             SHIFT_DR:           nextState = tms_i ? EXIT1_DR         : SHIFT_DR;
             EXIT1_DR:           nextState = tms_i ? UPDATE_DR        : PAUSE_DR;
             PAUSE_DR:           nextState = tms_i ? EXIT2_DR         : PAUSE_DR;
@@ -49,12 +52,12 @@ module tap_controller(
 
             // IR path
             SELECT_IR_SCAN:     nextState = tms_i ? TEST_LOGIC_RESET : SHIFT_IR;
+            CAPTURE_IR:         nextState = tms_i ? EXIT1_IR         : SHIFT_IR;
             SHIFT_IR:           nextState = tms_i ? EXIT1_IR         : SHIFT_IR;
             EXIT1_IR:           nextState = tms_i ? UPDATE_IR        : PAUSE_IR;
             PAUSE_IR:           nextState = tms_i ? EXIT2_IR         : PAUSE_IR;
             EXIT2_IR:           nextState = tms_i ? UPDATE_IR        : SHIFT_IR;
             UPDATE_IR:          nextState = tms_i ? SELECT_DR_SCAN   : RUN_TEST_IDLE;
-
             default:            nextState = TEST_LOGIC_RESET;
         endcase
     end
@@ -69,10 +72,10 @@ module tap_controller(
     // State-Based Signal Assignments
     assign shiftDR_o   = (currentState == SHIFT_DR);
     assign updateDR_o  = (currentState == UPDATE_DR);
-
+    assign captureDR_o = (currentState == CAPTURE_DR);
     assign shiftIR_o   = (currentState == SHIFT_IR);
     assign updateIR_o  = (currentState == UPDATE_IR);
-
+    assign captureIR_o = (currentState == CAPTURE_IR);
 
     // Enable Output at TDO: Enable when shifting IR or DR
     // The standard JTAG spec typically enables TDO output only during shifting states,
