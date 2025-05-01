@@ -13,10 +13,11 @@ module tap_controller(
     input  logic tck_i,   // JTAG clock
     input  logic tms_i,   // JTAG mode select
     input  logic trst_i,  // JTAG reset
-    output logic shiftIR_o, updateIR_o, captureIR_o,
-    output logic shiftDR_o, updateDR_o, captureDR_o,
+    output logic shiftIR_o, updateIR_o, clockIR_o,
+    output logic shiftDR_o, updateDR_o, clockDR_o,
     output logic SelectIR_o,
-    output logic Enable_o
+    output logic Enable_o,
+    output logic rst_o
 );
 
     typedef enum logic [3:0] {
@@ -28,10 +29,10 @@ module tap_controller(
     state_t currentState, nextState;
 
     // State Transition Logic
-    always_ff @(posedge tck_i or posedge trst_i) begin
-        if (trst_i)
+    always_ff @(posedge tck_i or negedge trst_i) begin
+        if (!trst_i) 
             currentState <= TEST_LOGIC_RESET;
-        else
+        else 
             currentState <= nextState;
     end
 
@@ -65,18 +66,17 @@ module tap_controller(
     // IR/DR selection logic:
     // If we are in IR states (CAPTURE_IR, SHIFT_IR, EXIT1_IR, PAUSE_IR, EXIT2_IR, UPDATE_IR),
     // SelectIR_o = 1, else 0.
-    assign SelectIR_o = (currentState == SHIFT_IR  ||
-                         currentState == EXIT1_IR   || currentState == PAUSE_IR  ||
-                         currentState == EXIT2_IR   || currentState == UPDATE_IR);
-
-    // State-Based Signal Assignments
+    assign SelectIR_o = (currentState == SHIFT_IR ||
+                    currentState == EXIT1_IR   || currentState == PAUSE_IR  ||
+                    currentState == EXIT2_IR   || currentState == UPDATE_IR);       
     assign shiftDR_o   = (currentState == SHIFT_DR);
+    assign clockDR_o   = (currentState == SHIFT_DR) ? tck_i : 0;
     assign updateDR_o  = (currentState == UPDATE_DR);
-    assign captureDR_o = (currentState == CAPTURE_DR);
+    assign clockDR_o   = (currentState == CAPTURE_DR);
     assign shiftIR_o   = (currentState == SHIFT_IR);
     assign updateIR_o  = (currentState == UPDATE_IR);
-    assign captureIR_o = (currentState == CAPTURE_IR);
-
+    assign clockIR_o   = (currentState == CAPTURE_IR);
+    assign rst_o       = trst_i;
     // Enable Output at TDO: Enable when shifting IR or DR
     // The standard JTAG spec typically enables TDO output only during shifting states,
     // but you can adjust as needed.
