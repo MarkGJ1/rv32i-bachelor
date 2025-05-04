@@ -13,9 +13,12 @@ module tap_controller_tb;
     logic tck_s, tms_s, trst_s;
 
     // Outputs from updated TAP Controller
-    logic shiftIR_s, updateIR_s;
-    logic shiftDR_s, updateDR_s;
-    logic clockIR_s, clockDR_s;
+    logic clockDR_s;
+    logic shiftDR_s;
+    logic updateDR_s;
+    logic clockIR_s;
+    logic shiftIR_s;
+    logic updateIR_s;
     logic SelectIR_s;
     logic Enable_s;
 
@@ -94,6 +97,8 @@ module tap_controller_tb;
         #1;
         assert(tap_ctrl.currentState == tap_ctrl.CAPTURE_DR)
           else $error("Not in CAPTURE_DR at time: %0t", $time);
+        assert(clockDR_s)
+          else $error("clockDR != 1 at time: %0t", $time);
         // In JTAG, going from SELECT_DR_SCAN with TMS=0 leads to CAPTURE_DR
         
         // TEST 4: CAPTURE_DR -> SHIFT_DR
@@ -106,6 +111,8 @@ module tap_controller_tb;
           else $error("Not in SHIFT_DR at time: %0t", $time);
         assert(shiftDR_s == 1)
           else $error("shiftDR_s not asserted in SHIFT_DR state at time: %0t", $time);
+        assert(clockDR_s == tck_s)
+          else $error("clockDR != 1 at time: %0t", $time);
         
         @(negedge tck_s)
         #1;
@@ -187,6 +194,12 @@ module tap_controller_tb;
           else $error("Not in SHIFT_IR from CAPTURE_IR at time: %0t", $time);
         assert(shiftIR_s == 1)
           else $error("shiftIR_s not asserted in SHIFT_IR state at time: %0t", $time);
+        assert(clockIR_s == tck_s)
+          else $error("clockIR != tck_s at time: %0t", $time);
+
+        @(posedge tck_s)
+        @(posedge tck_s)
+        @(posedge tck_s)
 
         @(negedge tck_s)
         #1;

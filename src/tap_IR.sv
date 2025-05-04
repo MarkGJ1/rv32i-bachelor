@@ -5,7 +5,7 @@
     Date created: 29.04.2025
 */
 
-module tap_InstructionRegister (
+module tap_instruction_register (
     input logic tck_i,
     input logic trst_i,
     input logic shiftIR_i,
@@ -17,9 +17,9 @@ module tap_InstructionRegister (
 
     logic [instruction_width-1:0] ir_s;
 
-    always_ff @(posedge tck_i or posedge trst_i) begin
-        if (trst_i)
-            ir_s <= '0;
+    always_ff @(posedge tck_i or negedge trst_i) begin
+        if (!trst_i)
+            ir_s <= '1; // IR needs to hold BYPASS instruction on RESET.
         else if (shiftIR_i) begin
             ir_s <= {tdi_i, ir_s[3:1]}; // Shift in instruction
         end

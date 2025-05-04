@@ -52,7 +52,7 @@ module tap_controller(
             UPDATE_DR:          nextState = tms_i ? SELECT_DR_SCAN   : RUN_TEST_IDLE;
 
             // IR path
-            SELECT_IR_SCAN:     nextState = tms_i ? TEST_LOGIC_RESET : SHIFT_IR;
+            SELECT_IR_SCAN:     nextState = tms_i ? TEST_LOGIC_RESET : CAPTURE_IR;
             CAPTURE_IR:         nextState = tms_i ? EXIT1_IR         : SHIFT_IR;
             SHIFT_IR:           nextState = tms_i ? EXIT1_IR         : SHIFT_IR;
             EXIT1_IR:           nextState = tms_i ? UPDATE_IR        : PAUSE_IR;
@@ -63,20 +63,50 @@ module tap_controller(
         endcase
     end
 
-    // IR/DR selection logic:
-    // If we are in IR states (CAPTURE_IR, SHIFT_IR, EXIT1_IR, PAUSE_IR, EXIT2_IR, UPDATE_IR),
-    // SelectIR_o = 1, else 0.
-    assign SelectIR_o = (currentState == SHIFT_IR ||
-                    currentState == EXIT1_IR   || currentState == PAUSE_IR  ||
-                    currentState == EXIT2_IR   || currentState == UPDATE_IR);       
-    assign shiftDR_o   = (currentState == SHIFT_DR);
-    assign clockDR_o   = (currentState == SHIFT_DR) ? tck_i : 0;
-    assign updateDR_o  = (currentState == UPDATE_DR);
-    assign clockDR_o   = (currentState == CAPTURE_DR);
-    assign shiftIR_o   = (currentState == SHIFT_IR);
-    assign updateIR_o  = (currentState == UPDATE_IR);
-    assign clockIR_o   = (currentState == CAPTURE_IR);
-    assign rst_o       = trst_i;
+    always_comb begin
+        // Data-reg control signals
+        clockDR_o   = 0;    
+        shiftDR_o   = 0;
+        updateDR_o  = 0;
+        // Instruction-reg control signals
+        SelectIR_o  = 0;
+        clockIR_o   = 0;
+        shiftIR_o   = 0;
+        updateIR_o  = 0;
+
+        case (currentState)
+            // DR path
+            CAPTURE_DR: clockDR_o = tck_i;
+            SHIFT_DR:   begin 
+                        shiftDR_o = 1;
+                        clockDR_o = tck_i;
+            end
+            EXIT1_DR:   begin   
+                        shiftDR_o = 0;
+                        clockDR_o = 0;
+            end
+            UPDATE_DR:  updateDR_o = 1;
+            // IR path
+            CAPTURE_IR: clockIR_o  = tck_i;
+            SHIFT_IR:   begin
+                        SelectIR_o = 1;
+                        shiftIR_o  = 1;
+                        clockIR_o  = tck_i;
+            end
+            EXIT1_IR:   begin
+                        SelectIR_o = 1;
+                        shiftIR_o  = 0;
+                        clockIR_o  = 0;
+            end
+            PAUSE_IR:   SelectIR_o = 1;
+            EXIT2_IR:   SelectIR_o = 1;
+            UPDATE_IR:  begin
+                        SelectIR_o = 1;
+                        updateIR_o = 1;
+            end
+        endcase
+    end
+
     // Enable Output at TDO: Enable when shifting IR or DR
     // The standard JTAG spec typically enables TDO output only during shifting states,
     // but you can adjust as needed.

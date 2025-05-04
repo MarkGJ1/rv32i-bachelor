@@ -1,7 +1,6 @@
 /*
     File name: tap_dff.sv
-    Description: TODO: Add testbench.
-                TODO: Check boundary scan cell for second flip-flop, add here.
+    Description: TODO: Check boundary scan cell for second flip-flop, add here.
     Author: Marko Gjorgjievski
     Date created: 25.04.2025
 */
@@ -19,4 +18,5 @@ module tap_dff(
         else
             q_o <= d_i;
     end
+
 endmodule
