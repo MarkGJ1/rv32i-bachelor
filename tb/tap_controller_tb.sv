@@ -186,6 +186,16 @@ module tap_controller_tb;
         assert(tap_ctrl.currentState == tap_ctrl.SELECT_IR_SCAN)
           else $error("Not in SELECT_IR_SCAN at time: %0t", $time);
 
+
+        // TEST X: SELECT_IR_SCAN -> CAPTURE_IR
+        $display("TEST X: SELECT_IR_SCAN -> CAPTURE_IR  at time: %0t", $time);
+        tms_s = 0;
+        @(posedge tck_s); #1;
+        assert(tap_ctrl.currentState == tap_ctrl.CAPTURE_IR)
+          else $error("Not in CAPTURE_IR from SELECT_IR_SCAN at time: %0t", $time);
+        assert(clockIR_s == tck_s)
+          else $error("clockIR != tck_s at time: %0t", $time);
+
         // TEST 10: CAPTURE_IR->SHIFT_IR
         $display("TEST 10: CAPTURE_IR -> SHIFT_IR at time: %0t", $time);
         tms_s = 0; // CAPTURE_IR->SHIFT_IR
