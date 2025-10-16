@@ -1,4 +1,4 @@
-# rv32i-tap-bachelor
+# rv32i-bachelor
 A scan-testable RISC-V core implementation (instruction decoder and register file) using SystemVerilog
 
 The TAP module implementation is guided through: L.-T. Wang, C.-W. Wu, and X. Wen, VLSI Test Principles and Architectures: Design for Testability.
