@@ -1,8 +1,7 @@
 # rv32i-bachelor
-A scan-testable RISC-V core implementation (instruction decoder and register file) using SystemVerilog
-
-The TAP module implementation is guided through: L.-T. Wang, C.-W. Wu, and X. Wen, VLSI Test Principles and Architectures: Design for Testability.
-San Francisco, CA, USA: Morgan Kaufmann Publishers Inc., 2006, ISBN: 9780080474793.
+A scan-testable RISC-V core implementation (instruction decoder and register file) using SystemVerilog. 
+Meets the criteria for full scan injections with ATPG capable software such as Cadence's.
+Uses one clock and one reset signal throughout the design.
 
 ## Project Structure
 - docs: documentation and bachelor thesis.
