@@ -65,38 +65,41 @@ module tap_controller(
 
     always_comb begin
         // Data-reg control signals
-        clockDR_o   = 0;    
+        // clockDR_o   = 0;    
         shiftDR_o   = 0;
         updateDR_o  = 0;
         // Instruction-reg control signals
         SelectIR_o  = 0;
-        clockIR_o   = 0;
+        // clockIR_o   = 0;
         shiftIR_o   = 0;
         updateIR_o  = 0;
 
         case (currentState)
             // DR path
-            CAPTURE_DR: clockDR_o = tck_i;
+            // CAPTURE_DR: //clockDR_o = tck_i;
             SHIFT_DR:   begin 
                         shiftDR_o = 1;
-                        clockDR_o = tck_i;
+                        //clockDR_o = tck_i;
             end
             EXIT1_DR:   begin   
                         shiftDR_o = 0;
-                        clockDR_o = 0;
+                        //clockDR_o = 0;
             end
-            UPDATE_DR:  updateDR_o = 1;
+            UPDATE_DR:  begin
+                        updateDR_o = 1;
+                        //clockDR_o  = tck_i;
+            end
             // IR path
-            CAPTURE_IR: clockIR_o  = tck_i;
+            // CAPTURE_IR: //clockIR_o  = tck_i;
             SHIFT_IR:   begin
                         SelectIR_o = 1;
                         shiftIR_o  = 1;
-                        clockIR_o  = tck_i;
+                        //clockIR_o  = tck_i;
             end
             EXIT1_IR:   begin
                         SelectIR_o = 1;
                         shiftIR_o  = 0;
-                        clockIR_o  = 0;
+                        //clockIR_o  = 0;
             end
             PAUSE_IR:   SelectIR_o = 1;
             EXIT2_IR:   SelectIR_o = 1;
@@ -106,6 +109,10 @@ module tap_controller(
             end
         endcase
     end
+
+    // TODO: don't forget to just use regular tck_i, use clockDR/IR as control signals, 1 clock cycle to enable, following ones to sample and etc..
+    //assign clockDR_o = (currentState == CAPTURE_DR || currentState == SHIFT_DR || currentState == UPDATE_DR) ? tck_i : 0;
+    //assign clockIR_o = (currentState == CAPTURE_IR || currentState == SHIFT_IR || currentState == UPDATE_IR) ? tck_i : 0;
 
     // Enable Output at TDO: Enable when shifting IR or DR
     // The standard JTAG spec typically enables TDO output only during shifting states,

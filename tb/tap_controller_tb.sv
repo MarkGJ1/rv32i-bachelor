@@ -1,5 +1,5 @@
 /*
-    File name: tap_controller.sv
+    File name: tap_controller_tb.sv
     Description:
     Author: Marko Gjorgjievski
     Date created: 30.04.2025

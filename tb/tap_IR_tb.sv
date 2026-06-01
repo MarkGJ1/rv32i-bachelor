@@ -1,19 +1,22 @@
-`timescale 1ns/1ps
+/*
+    File name: tap_controller.sv
+    Description:
+    Author: Marko Gjorgjievski
+    Date created: 30.04.2025
+*/
 
-module pb_tb_ir;
+`timescale 1ns/10ps
+
+module tap_IR_tb;
 
     // Clock and control signals
     logic tck_s;
     logic tdi_s;
+    logic trst_s;
     logic shiftIR_s, updateIR_s;
 
     // Outputs
-    logic tdo_s;
     logic [3:0] instruction_s;
-
-    // TAP instructions
-    localparam LOAD_PROGRAM = 4'b1000;
-    localparam SCAN_TEST    = 4'b0010;
 
     // Clock generation
     initial begin
@@ -22,30 +25,40 @@ module pb_tb_ir;
     end
 
     // DUT: Instruction Register
-    pb_InstructionRegister ir (
+    tap_instruction_register tap_IR (
         .tck_i(tck_s),
-        .trst(),
+        .tdi_i(tdi_s),
+        .trst_i(trst_s),
         .shiftIR_i(shiftIR_s),
         .updateIR_i(updateIR_s),
-        .tdi_i(tdi_s),
-        .tdo_o(tdo_s),
         .instruction_o(instruction_s)
     );
 
     // Test logic
     initial begin
+        // (scale to ns, digits after decimal, time unit suffix, min. field width)
+        $timeformat(-9, 2, " ns", 10);
         // Initialize control signals
-        shiftIR_s = 0; updateIR_s = 0;
-        tdi_s = 0;
+        tdi_s       = 0;
+        shiftIR_s   = 0; 
+        updateIR_s  = 0;
+        
+        $display("RESETTING INSTRUCTION REGISTER; Time %t", $time);
+        trst_s      = 0;
+
+        $display("RELEASING RESET; Time %t", $time); 
+        @(posedge tck_s)
+        trst_s      = 1;
 
         // TEST 1: Shift and update LOAD_PROGRAM
         $display("Testing IR: Loading LOAD_PROGRAM...");
         shiftIR_s = 1;
+        @(posedge tck_s)
         for (int i = 0; i < 4; i++) begin
-            @(posedge tck_s);
             tdi_s = LOAD_PROGRAM[i];
-            
+            @(posedge tck_s);
         end
+
         @(posedge tck_s);
         shiftIR_s = 0;
         @(posedge tck_s);
@@ -64,6 +77,7 @@ module pb_tb_ir;
             tdi_s = SCAN_TEST[i];
             @(posedge tck_s);
         end
+
         shiftIR_s = 0;
         @(posedge tck_s);
 

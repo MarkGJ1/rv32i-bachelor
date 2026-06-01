@@ -21,7 +21,7 @@ module tap_bs_cell (
     always_ff @(posedge clockDR_i or negedge trst_i) begin // CaptureDR is important for output bscan_cells when using SAMPLE function.
         if (!trst_i)
             r1_reg <= 0;
-        else if (SAMPLE_i || PRELOAD_i)
+        else if (SAMPLE_i || PRELOAD_i) // TODO: Necessary to split this: when SAMPLE -> shiftDR_i = 0. use a capture enable signal for that single clock cycle.
             r1_reg <= shiftDR_i ? si_i : in_i;
     end
     

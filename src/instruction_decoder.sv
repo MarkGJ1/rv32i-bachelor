@@ -27,13 +27,11 @@ module decoder (
     output logic [$clog2(NUM_REGISTER) - 1:0] rd_addr_o
 );
 
-    // TODO: Debug. When logic is used here, fatal error at top sim.
-    // Probably the type of assignment is the problem "=", its like initialization.
     wire [OPCODE-1:0] opcode = inst_i[OPCODE-1:0];
     wire [FUNCT_7-1:0] funct_7 = inst_i[INST_WIDTH-1:INST_WIDTH - FUNCT_7];
     wire [2:0] funct_3 = inst_i[14:12];
 
-    always @* begin // TODO: Potential latches to be fixed.
+    always @* begin
         branch_o = 0;
         result_mux_o = 2'b00;
         alu_op_o = OP_ALU_ADD;

@@ -1,21 +1,24 @@
 /*
-    File name: tap_controller.sv
+    File name: tap_IR.sv
     Description:
     Author: Marko Gjorgjievski
     Date created: 29.04.2025
 */
 
+`timescale 1ns/10ps
+
+import tap_pkg::*;
+
 module tap_instruction_register (
     input logic tck_i,
+    input logic tdi_i,
     input logic trst_i,
     input logic shiftIR_i,
     input logic updateIR_i,
-    input logic tdi_i,
-    output logic tdo_o,
-    output logic [instruction_width-1:0] instruction_o // 4-bit instruction register
+    output logic [INSTRUCTION_WIDTH-1:0] instruction_o // 4-bit instruction register
 );
 
-    logic [instruction_width-1:0] ir_s;
+    logic [INSTRUCTION_WIDTH-1:0] ir_s; // TODO: MISSING INSTRUCTION WIDTH.
 
     always_ff @(posedge tck_i or negedge trst_i) begin
         if (!trst_i)
@@ -27,7 +30,7 @@ module tap_instruction_register (
 
     assign tdo_o = ir_s[0]; // Output least significant bit during shifting
 
-    always_ff @(posedge tck_i) begin
+    always_ff @(negedge tck_i) begin
         if (updateIR_i) begin
             instruction_o <= ir_s; // Update instruction register
         end
