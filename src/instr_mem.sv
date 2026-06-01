@@ -13,7 +13,7 @@ module instruction_memory #(
     // MEM_SIZE in Words
     parameter MEM_SIZE = 1024
 )  (
-  	input wire [$clog2(MEM_SIZE)-1:0] addr_i,
+  	input logic [$clog2(MEM_SIZE)-1:0] addr_i,
   	output logic [INST_WIDTH-1:0] inst_o
 );
 

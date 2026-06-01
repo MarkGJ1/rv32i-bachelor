@@ -11,9 +11,8 @@
 import pkg_config::*;
 
 module decoder (
-    input wire [INST_WIDTH-1:0] inst_i,
-    output wire [OPCODE-1:0] opcode_o,
-    
+    input logic [INST_WIDTH-1:0] inst_i,
+    output logic [OPCODE-1:0] opcode_o,
     // Control Signals
     output logic branch_o,
     output logic [1:0] result_mux_o, // # alu= 2'b00, pc+4 = 2'b01, mem = 2'b10
@@ -32,7 +31,7 @@ module decoder (
     wire [FUNCT_7-1:0] funct_7 = inst_i[INST_WIDTH-1:INST_WIDTH - FUNCT_7];
     wire [2:0] funct_3 = inst_i[14:12];
 
-    always @* begin // TODO: Potential latches to be fixed.
+    always @* begin
         branch_o = 0;
         result_mux_o = 2'b00;
         alu_op_o = OP_ALU_ADD;
