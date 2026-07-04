@@ -10,4 +10,4 @@ Uses one clock and one reset signal throughout the design.
 - tb:   testbenches for those modules.
 
 ## Block Diagram of the Architecture
-![Block-Diagram](docs/top-view-white.jpg")
+![Block-Diagram](docs/top-view-white.jpg)
